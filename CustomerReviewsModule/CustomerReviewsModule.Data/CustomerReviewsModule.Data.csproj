@@ -73,6 +73,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201906181209237_Initial.cs" />
+    <Compile Include="Migrations\201906181209237_Initial.Designer.cs">
+      <DependentUpon>201906181209237_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomerReviewEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,7 +85,11 @@
     <Compile Include="Services\CustomerReviewSearchService.cs" />
     <Compile Include="Services\CustomerReviewService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201906181209237_Initial.resx">
+      <DependentUpon>201906181209237_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CustomerReviewsModule.Core\CustomerReviewsModule.Core.csproj">
       <Project>{1e515a2e-b736-4857-939f-6825e9533e7c}</Project>
