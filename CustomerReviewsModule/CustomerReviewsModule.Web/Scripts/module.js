@@ -15,9 +15,9 @@ angular.module(moduleName, [])
                     controller: [
                         '$scope', 'platformWebApp.bladeNavigationService', function ($scope, bladeNavigationService) {
                             var newBlade = {
-                                id: 'blade1',
-                                controller: 'customerReviewsModule.helloWorldController',
-                                template: 'Modules/$(customerReviewsModule)/Scripts/blades/hello-world.html',
+                                id: 'reviewsList',
+                                controller: 'customerReviewsModule.reviewsListController',
+                                template: 'Modules/$(CustomerReviewsModule)/Scripts/blades/reviews-list.tpl.html',
                                 isClosingDisabled: true
                             };
                             bladeNavigationService.showBlade(newBlade);
@@ -32,11 +32,17 @@ angular.module(moduleName, [])
             var menuItem = {
                 path: 'browse/customerReviewsModule',
                 icon: 'fa fa-cube',
-                title: 'CustomerReviewsModule',
+                title: 'Customer Reviews Module',
                 priority: 100,
                 action: function () { $state.go('workspace.customerReviewsModuleState'); },
-                permission: 'customerReviewsModule.WebPermission'
+                permission: 'customerReview:read'
             };
             mainMenuService.addMenuItem(menuItem);
+
+            var itemReviewsWidget = {
+                controller: 'customerReviewsModule.customerReviewWidgetController',
+                template: 'Modules/$(CustomerReviewsModule)/Scripts/widgets/customerReviewWidget.tpl.html'
+            };
+            widgetService.registerWidget(itemReviewsWidget, 'itemDetail');
         }
     ]);
