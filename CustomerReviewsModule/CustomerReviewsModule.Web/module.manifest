@@ -93,9 +93,9 @@
   
     <permissions>
         <group name="CustomerReviewsModule">
-            <permission id="CustomerReviewsModule:read" name="Read" />
-            <permission id="CustomerReviewsModule:update" name="Update" />
-            <permission id="CustomerReviewsModule:delete" name="Delete" />
+            <permission id="customerReview:read" name="Read" />
+            <permission id="customerReview:update" name="Update" />
+            <permission id="customerReview:delete" name="Delete" />
         </group>
     </permissions>
 </module>
