@@ -2,7 +2,7 @@
 using CustomerReviewsModule.Core.Services;
 using CustomerReviewsModule.Data.Repositories;
 using CustomerReviewsModule.Data.Services;
-using Microsoft.Practices.Unity;
+using Unity;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.Modularity;
 using VirtoCommerce.Platform.Core.Settings;
@@ -37,7 +37,8 @@ namespace CustomerReviewsModule.Web
             // This method is called for each installed module on the first stage of initialization.
 
             // Register implementations:
-            _container.RegisterType<ICustomerReviewRepository>(new InjectionFactory(c => new CustomerReviewRepository(_connectionString, new EntityPrimaryKeyGeneratorInterceptor(), _container.Resolve<AuditableInterceptor>())));
+            //// _container.RegisterType<ICustomerReviewRepository>(new InjectionFactory(c => new CustomerReviewRepository(_connectionString, new EntityPrimaryKeyGeneratorInterceptor(), _container.Resolve<AuditableInterceptor>())));
+            _container.RegisterFactory<ICustomerReviewRepository>(c => new CustomerReviewRepository(_connectionString, new EntityPrimaryKeyGeneratorInterceptor(), _container.Resolve<AuditableInterceptor>()));
             _container.RegisterType<ICustomerReviewSearchService, CustomerReviewSearchService>();
             _container.RegisterType<ICustomerReviewService, CustomerReviewService>();
         }

@@ -66,13 +66,5 @@ namespace CustomerReviewsModule.Web.Controllers.Api
             _customerReviewService.DeleteCustomerReviews(ids);
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-        // GET: api/CustomerReviewsModule
-        [HttpGet]
-        [Route("")]
-        public IHttpActionResult Get()
-        {
-            return Ok(new { result = "Hello world!" });
-        }
     }
 }
