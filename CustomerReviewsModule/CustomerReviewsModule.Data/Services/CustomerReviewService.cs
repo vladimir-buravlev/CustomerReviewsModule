@@ -20,6 +20,9 @@ namespace CustomerReviewsModule.Data.Services
 
         public CustomerReview[] GetByIds(string[] ids)
         {
+            if (ids == null)
+                throw new ArgumentNullException(nameof(ids));
+
             using (var repository = _repositoryFactory())
             {
                 return repository.GetByIds(ids).Select(x => x.ToModel(AbstractTypeFactory<CustomerReview>.TryCreateInstance())).ToArray();
@@ -60,6 +63,9 @@ namespace CustomerReviewsModule.Data.Services
 
         public void DeleteCustomerReviews(string[] ids)
         {
+            if (ids == null)
+                throw new ArgumentNullException(nameof(ids));
+
             using (var repository = _repositoryFactory())
             {
                 repository.DeleteCustomerReviews(ids);

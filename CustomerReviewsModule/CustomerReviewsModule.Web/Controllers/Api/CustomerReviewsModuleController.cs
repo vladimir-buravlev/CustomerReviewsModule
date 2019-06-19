@@ -3,7 +3,9 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using CustomerReviewsModule.Core.Models;
 using CustomerReviewsModule.Core.Services;
+using CustomerReviewsModule.Web.Security;
 using VirtoCommerce.Domain.Commerce.Model.Search;
+using VirtoCommerce.Platform.Core.Web.Security;
 
 namespace CustomerReviewsModule.Web.Controllers.Api
 {
@@ -29,7 +31,7 @@ namespace CustomerReviewsModule.Web.Controllers.Api
         [HttpPost]
         [Route("search")]
         [ResponseType(typeof(GenericSearchResult<CustomerReview>))]
-        //[CheckPermission(Permission = CustomerReviewsPredefinedPermissions.Read)]
+        [CheckPermission(Permission = CustomerReviewsPredefinedPermissions.Read)]
         public IHttpActionResult SearchCustomerReviews(CustomerReviewSearchCriteria criteria)
         {
             var result = _customerReviewSearchService.SearchCustomerReviews(criteria);
@@ -45,7 +47,7 @@ namespace CustomerReviewsModule.Web.Controllers.Api
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(void))]
-        //[CheckPermission(Permission = CustomerReviewsPredefinedPermissions.Update)]
+        [CheckPermission(Permission = CustomerReviewsPredefinedPermissions.Update)]
         public IHttpActionResult Update(CustomerReview[] customerReviews)
         {
             _customerReviewService.SaveCustomerReviews(customerReviews);
@@ -60,7 +62,7 @@ namespace CustomerReviewsModule.Web.Controllers.Api
         [HttpDelete]
         [Route("")]
         [ResponseType(typeof(void))]
-        //[CheckPermission(Permission = CustomerReviewsPredefinedPermissions.Delete)]
+        [CheckPermission(Permission = CustomerReviewsPredefinedPermissions.Delete)]
         public IHttpActionResult Delete([FromUri] string[] ids)
         {
             _customerReviewService.DeleteCustomerReviews(ids);
