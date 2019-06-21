@@ -62,7 +62,8 @@ namespace CustomerReviewsModule.Tests
                 CreatedDate = DateTime.Now,
                 CreatedBy = "xUnit tests",
                 AuthorNickname = "xUnit",
-                Content = "xUnit likes this"
+                Content = "xUnit likes this",
+                Rating = 1
             };
 
             CustomerReviewService.SaveCustomerReviews(new[] { item });
@@ -83,7 +84,8 @@ namespace CustomerReviewsModule.Tests
                 CreatedDate = DateTime.Now,
                 CreatedBy = "xUnit tests",
                 AuthorNickname = "xUnit",
-                Content = "xUnit likes this " + DateTime.Now.ToString()
+                Content = "xUnit likes this " + DateTime.Now.ToString(),
+                Rating = 1
             };
 
             CustomerReviewService.SaveCustomerReviews(new[] { item });
@@ -161,7 +163,8 @@ namespace CustomerReviewsModule.Tests
                 CreatedDate = DateTime.Now,
                 CreatedBy = "xUnit tests",
                 AuthorNickname = "xUnit",
-                Content = "xUnit likes this"
+                Content = "xUnit likes this",
+                Rating = 1
             };
 
             CustomerReviewService.SaveCustomerReviews(new[] { item });

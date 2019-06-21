@@ -38,7 +38,6 @@ namespace CustomerReviewsModule.Web
 
             // Register implementations:
             _container.RegisterType<ICustomerReviewRepository>(new InjectionFactory(c => new CustomerReviewRepository(_connectionString, new EntityPrimaryKeyGeneratorInterceptor(), _container.Resolve<AuditableInterceptor>())));
-            ////_container.RegisterFactory<ICustomerReviewRepository>(c => new CustomerReviewRepository(_connectionString, new EntityPrimaryKeyGeneratorInterceptor(), _container.Resolve<AuditableInterceptor>())).AddDefaultMap();
             _container.RegisterType<ICustomerReviewSearchService, CustomerReviewSearchService>();
             _container.RegisterType<ICustomerReviewService, CustomerReviewService>();
         }

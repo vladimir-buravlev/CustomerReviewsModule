@@ -8,5 +8,6 @@ namespace CustomerReviewsModule.Core.Models
         public string Content { get; set; }
         public bool IsActive { get; set; }
         public string ProductId { get; set; }
+        public int Rating { get; set; }
     }
 }
