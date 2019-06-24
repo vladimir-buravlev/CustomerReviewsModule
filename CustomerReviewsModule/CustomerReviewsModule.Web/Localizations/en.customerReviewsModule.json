@@ -2,9 +2,12 @@
     "customerReviewsModule": {
         "blades": {
             "review-list": {
+                "title": "Customer Reviews",
+                "subtitle": "Reviews for products",
                 "labels": {
                     "content": "Content",
                     "modifiedDate": "Last updated",
+                    "rating": "Rewiew rating",
                     "no-review": "No Customer Reviews found"
                 }
             }

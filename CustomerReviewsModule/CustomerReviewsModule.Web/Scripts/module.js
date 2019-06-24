@@ -16,6 +16,8 @@ angular.module(moduleName, [])
                         '$scope', 'platformWebApp.bladeNavigationService', function ($scope, bladeNavigationService) {
                             var newBlade = {
                                 id: 'reviewsList',
+                                title: 'customerReviewsModule.blades.review-list.title',
+                                subtitle: 'customerReviewsModule.blades.review-list.subtitle',
                                 controller: 'customerReviewsModule.reviewsListController',
                                 template: 'Modules/$(CustomerReviewsModule)/Scripts/blades/reviews-list.tpl.html',
                                 isClosingDisabled: true
@@ -32,7 +34,7 @@ angular.module(moduleName, [])
             var menuItem = {
                 path: 'browse/customerReviewsModule',
                 icon: 'fa fa-cube',
-                title: 'Customer Reviews Module',
+                title: 'Customer Reviews',
                 priority: 100,
                 action: function () { $state.go('workspace.customerReviewsModuleState'); },
                 permission: 'customerReview:read'
