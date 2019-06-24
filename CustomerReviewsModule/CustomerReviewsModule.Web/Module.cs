@@ -40,6 +40,7 @@ namespace CustomerReviewsModule.Web
             _container.RegisterType<ICustomerReviewRepository>(new InjectionFactory(c => new CustomerReviewRepository(_connectionString, new EntityPrimaryKeyGeneratorInterceptor(), _container.Resolve<AuditableInterceptor>())));
             _container.RegisterType<ICustomerReviewSearchService, CustomerReviewSearchService>();
             _container.RegisterType<ICustomerReviewService, CustomerReviewService>();
+            _container.RegisterType<IProductRatingService, ProductRatingService>();
         }
 
         public override void PostInitialize()

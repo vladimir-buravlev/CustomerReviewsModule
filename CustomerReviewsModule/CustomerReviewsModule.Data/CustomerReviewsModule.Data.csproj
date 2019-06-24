@@ -85,13 +85,19 @@
     <Compile Include="Migrations\201906211338037_AddRating.Designer.cs">
       <DependentUpon>201906211338037_AddRating.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906241202399_AddProductRatingTable.cs" />
+    <Compile Include="Migrations\201906241202399_AddProductRatingTable.Designer.cs">
+      <DependentUpon>201906241202399_AddProductRatingTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomerReviewEntity.cs" />
+    <Compile Include="Models\ProductRatingEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CustomerReviewRepository.cs" />
     <Compile Include="Repositories\ICustomerReviewRepository.cs" />
     <Compile Include="Services\CustomerReviewSearchService.cs" />
     <Compile Include="Services\CustomerReviewService.cs" />
+    <Compile Include="Services\ProductRatingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201906181209237_Initial.resx">
@@ -99,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906211338037_AddRating.resx">
       <DependentUpon>201906211338037_AddRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906241202399_AddProductRatingTable.resx">
+      <DependentUpon>201906241202399_AddProductRatingTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

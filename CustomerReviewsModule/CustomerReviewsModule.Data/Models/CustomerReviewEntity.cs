@@ -74,6 +74,7 @@ namespace CustomerReviewsModule.Data.Models
             target.Content = Content;
             target.IsActive = IsActive;
             target.ProductId = ProductId;
+            target.Rating = Rating;
         }
     }
 }

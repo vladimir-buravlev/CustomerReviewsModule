@@ -19,6 +19,7 @@ namespace CustomerReviewsModule.Data.Repositories
         }
 
         public IQueryable<CustomerReviewEntity> CustomerReviews => GetAsQueryable<CustomerReviewEntity>();
+        public IQueryable<ProductRatingEntity> ProductRatings => GetAsQueryable<ProductRatingEntity>();
 
         public CustomerReviewEntity[] GetByIds(string[] ids)
         {
@@ -34,9 +35,15 @@ namespace CustomerReviewsModule.Data.Repositories
             }
         }
 
+        public ProductRatingEntity GetByProductId(string productId)
+        {
+            return ProductRatings.Where(x => x.ProductId.Equals(productId)).First();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CustomerReviewEntity>().ToTable("CustomerReview").HasKey(x => x.Id).Property(x => x.Id);
+            modelBuilder.Entity<ProductRatingEntity>().ToTable("ProductRating").HasKey(x => x.Id).Property(x => x.Id);
 
             base.OnModelCreating(modelBuilder);
         }

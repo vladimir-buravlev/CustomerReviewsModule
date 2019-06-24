@@ -14,15 +14,17 @@ namespace CustomerReviewsModule.Web.Controllers.Api
     {
         private readonly ICustomerReviewSearchService _customerReviewSearchService;
         private readonly ICustomerReviewService _customerReviewService;
+        private readonly IProductRatingService _productRatingService;
 
         public CustomerReviewsModuleController()
         {
         }
 
-        public CustomerReviewsModuleController(ICustomerReviewSearchService customerReviewSearchService, ICustomerReviewService customerReviewService)
+        public CustomerReviewsModuleController(ICustomerReviewSearchService customerReviewSearchService, ICustomerReviewService customerReviewService, IProductRatingService productRatingService)
         {
             _customerReviewSearchService = customerReviewSearchService;
             _customerReviewService = customerReviewService;
+            _productRatingService = productRatingService;
         }
 
         /// <summary>
@@ -37,7 +39,6 @@ namespace CustomerReviewsModule.Web.Controllers.Api
             var result = _customerReviewSearchService.SearchCustomerReviews(criteria);
             return Ok(result);
         }
-
 
         /// <summary>
         ///  Create new or update existing customer review
@@ -67,6 +68,19 @@ namespace CustomerReviewsModule.Web.Controllers.Api
         {
             _customerReviewService.DeleteCustomerReviews(ids);
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        /// <summary>
+        /// Return product Customer review search results
+        /// </summary>
+        [HttpPost]
+        [Route("getrating")]
+        [ResponseType(typeof(ProductRating))]
+        [CheckPermission(Permission = CustomerReviewsPredefinedPermissions.Read)]
+        public IHttpActionResult GetProductRating(string productId)
+        {
+            var result = _productRatingService.GetByProductId(productId);
+            return Ok(result);
         }
     }
 }
