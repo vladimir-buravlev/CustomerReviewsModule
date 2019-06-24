@@ -37,7 +37,7 @@ namespace CustomerReviewsModule.Data.Repositories
 
         public ProductRatingEntity GetByProductId(string productId)
         {
-            return ProductRatings.Where(x => x.ProductId.Equals(productId)).First();
+            return ProductRatings.Where(x => x.ProductId.Equals(productId)).FirstOrDefault() ?? new ProductRatingEntity();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

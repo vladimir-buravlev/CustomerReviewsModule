@@ -154,6 +154,33 @@ namespace CustomerReviewsModule.Tests
             Assert.NotEqual(0, searchResult.TotalCount);
         }
 
+        [Fact]
+        public void GetProductById_Null_ThrowsArgumentNullException()
+        {
+            Action actual = () => ProductRatingService.GetByProductId(null);
+
+            Assert.Throws<ArgumentNullException>(actual);
+        }
+
+        [Fact]
+        public void GetProductById_NonExistingItem_ReturnsEmpty()
+        {
+            string nonExistingId = "nonExistingId";
+            var result = ProductRatingService.GetByProductId(nonExistingId);
+
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void GetProductById_ExistingItem_ReturnsSameItem()
+        {
+            string testProductId = "testProductId";
+            var result = ProductRatingService.GetByProductId(testProductId);
+
+            Assert.NotNull(result);
+            Assert.Equal(testProductId, result.ProductId);
+        }
+
         private void CreateNewReview(string rewiewId)
         {
             var item = new CustomerReview
@@ -183,6 +210,14 @@ namespace CustomerReviewsModule.Tests
             get
             {
                 return new CustomerReviewService(GetRepository);
+            }
+        }
+
+        private IProductRatingService ProductRatingService
+        {
+            get
+            {
+                return new ProductRatingService(GetRepository);
             }
         }
 

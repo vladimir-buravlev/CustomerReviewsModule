@@ -23,7 +23,7 @@ namespace CustomerReviewsModule.Data.Services
 
             using (var repository = _repositoryFactory())
             {
-                return repository.GetByProductId(productId).ToModel(AbstractTypeFactory<ProductRating>.TryCreateInstance());
+                return repository.GetByProductId(productId)?.ToModel(AbstractTypeFactory<ProductRating>.TryCreateInstance());
             }
         }
     }
