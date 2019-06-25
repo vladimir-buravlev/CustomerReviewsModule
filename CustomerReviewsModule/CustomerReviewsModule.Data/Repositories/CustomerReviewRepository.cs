@@ -53,7 +53,7 @@ namespace CustomerReviewsModule.Data.Repositories
         public void RecalcRatingForProduct(string productId)
         {
 
-            bool useWeightedMechanism = _settingsManager.GetValue("CustomerReviewsModule.General.UseWeightedRatingMechanism", false);
+            bool useWeightedMechanism = _settingsManager?.GetValue("CustomerReviewsModule.General.UseWeightedRatingMechanism", false) ?? false;
             decimal newRating;
             var productReviewRatings = CustomerReviews.Where(x => x.ProductId.Equals(productId)).Select(x => x.Rating).ToArray();
             if (useWeightedMechanism)
