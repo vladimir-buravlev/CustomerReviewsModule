@@ -23,7 +23,7 @@ namespace CustomerReviewsModule.Web
 
         public override void SetupDatabase()
         {
-            using (var db = new CustomerReviewRepository(_connectionString, _container.Resolve<AuditableInterceptor>()))
+            using (var db = new CustomerReviewRepository(_connectionString, _container.Resolve<ISettingsManager>(), _container.Resolve<AuditableInterceptor>()))
             {
                 var initializer = new SetupDatabaseInitializer<CustomerReviewRepository, Data.Migrations.Configuration>();
                 initializer.InitializeDatabase(db);
@@ -37,7 +37,7 @@ namespace CustomerReviewsModule.Web
             // This method is called for each installed module on the first stage of initialization.
 
             // Register implementations:
-            _container.RegisterType<ICustomerReviewRepository>(new InjectionFactory(c => new CustomerReviewRepository(_connectionString, new EntityPrimaryKeyGeneratorInterceptor(), _container.Resolve<AuditableInterceptor>())));
+            _container.RegisterType<ICustomerReviewRepository>(new InjectionFactory(c => new CustomerReviewRepository(_connectionString, _container.Resolve<ISettingsManager>(), new EntityPrimaryKeyGeneratorInterceptor(), _container.Resolve<AuditableInterceptor>())));
             _container.RegisterType<ICustomerReviewSearchService, CustomerReviewSearchService>();
             _container.RegisterType<ICustomerReviewService, CustomerReviewService>();
             _container.RegisterType<IProductRatingService, ProductRatingService>();

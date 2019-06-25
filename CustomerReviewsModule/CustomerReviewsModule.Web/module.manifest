@@ -32,7 +32,14 @@
 
     <settings>
         <group name="General">
-            <setting>
+			<setting>
+				<name>CustomerReviewsModule.General.UseWeightedRatingMechanism</name>
+				<valueType>boolean</valueType>
+				<defaultValue>true</defaultValue>
+				<title>Use weighted rating calculation mechanism</title>
+				<description>Enable or disable using weighted rating calculation mechanism (simple average if desabled)</description>
+			</setting>
+			<setting>
                 <name>CustomerReviewsModule.General.String</name>
                 <valueType>string</valueType>
                 <defaultValue>qwerty</defaultValue>

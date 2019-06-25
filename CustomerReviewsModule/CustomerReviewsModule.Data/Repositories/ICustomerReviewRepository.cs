@@ -12,5 +12,6 @@ namespace CustomerReviewsModule.Data.Repositories
         CustomerReviewEntity[] GetByIds(string[] ids);
         void DeleteCustomerReviews(string[] ids);
         ProductRatingEntity GetByProductId(string productId);
+        void RecalcRatingForProduct(string productId);
     }
 }

@@ -3,6 +3,7 @@ using CustomerReviewsModule.Core.Models;
 using CustomerReviewsModule.Core.Services;
 using CustomerReviewsModule.Data.Repositories;
 using CustomerReviewsModule.Data.Services;
+using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Data.Infrastructure.Interceptors;
 using Xunit;
 
@@ -224,8 +225,10 @@ namespace CustomerReviewsModule.Tests
         private ICustomerReviewRepository GetRepository()
         {
             string connectionString = "VirtoCommerce2"; // is it your base?
-            var repository = new CustomerReviewRepository(connectionString, new EntityPrimaryKeyGeneratorInterceptor(), new AuditableInterceptor(null));
+            connectionString = ConfigurationHelper.GetConnectionStringValue("VirtoCommerce");
+            var repository = new CustomerReviewRepository(connectionString, null, new EntityPrimaryKeyGeneratorInterceptor(), new AuditableInterceptor(null));
             return repository;
+            //return null;
         }
     }
 }

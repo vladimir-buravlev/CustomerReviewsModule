@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CustomerReviewsModule.Core.Models;
 using CustomerReviewsModule.Core.Services;
@@ -34,6 +35,7 @@ namespace CustomerReviewsModule.Data.Services
             if (items == null)
                 throw new ArgumentNullException(nameof(items));
 
+            List<string> productIds = new List<string>();
             var pkMap = new PrimaryKeyResolvingMap();
             using (var repository = _repositoryFactory())
             {
@@ -53,11 +55,16 @@ namespace CustomerReviewsModule.Data.Services
                         {
                             repository.Add(sourceEntity);
                         }
+                        productIds.Add(derivativeContract.ProductId);
                     }
 
                     CommitChanges(repository);
                     pkMap.ResolvePrimaryKeys();
                 }
+                IEnumerable<string> distinctProductIds = productIds.Distinct();
+                foreach (string productId in distinctProductIds)
+                    repository.RecalcRatingForProduct(productId);
+                CommitChanges(repository);
             }
         }
 
