@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using CustomerReviewsModule.Core.Models;
 using CustomerReviewsModule.Data.Models;
+using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.Settings;
 using VirtoCommerce.Platform.Data.Infrastructure;
 using VirtoCommerce.Platform.Data.Infrastructure.Interceptors;
@@ -47,7 +49,15 @@ namespace CustomerReviewsModule.Data.Repositories
 
         public ProductRatingEntity GetByProductId(string productId)
         {
-            return ProductRatings.Where(x => x.ProductId.Equals(productId)).FirstOrDefault() ?? new ProductRatingEntity();
+            ProductRatingEntity result = ProductRatings.Where(x => x.ProductId.Equals(productId)).FirstOrDefault();
+            if (result == null)
+            {
+                var pkMap = new PrimaryKeyResolvingMap();
+                var productRatingModel = AbstractTypeFactory<ProductRating>.TryCreateInstance();
+                productRatingModel.ProductId = productId;
+                result = AbstractTypeFactory<ProductRatingEntity>.TryCreateInstance().FromModel(productRatingModel, pkMap);
+            }
+            return result;
         }
 
         public void RecalcRatingForProduct(string productId)
@@ -70,7 +80,14 @@ namespace CustomerReviewsModule.Data.Repositories
                 newRating = uniqueRatingValuesCount > 0 ? (decimal)uniqueRatingValuesSum / (decimal)uniqueRatingValuesCount : 0;
             }
 
-            var productRating = ProductRatings.Where(x => x.ProductId.Equals(productId)).FirstOrDefault() ?? new ProductRatingEntity() { ProductId = productId };
+            var productRating = ProductRatings.Where(x => x.ProductId.Equals(productId)).FirstOrDefault();
+            if (productRating == null)
+            {
+                var pkMap = new PrimaryKeyResolvingMap();
+                var productRatingModel = AbstractTypeFactory<ProductRating>.TryCreateInstance();
+                productRatingModel.ProductId = productId;
+                productRating = AbstractTypeFactory<ProductRatingEntity>.TryCreateInstance().FromModel(productRatingModel, pkMap);
+            }
             productRating.Rating = newRating;
 
             AddOrUpdate(productRating);
